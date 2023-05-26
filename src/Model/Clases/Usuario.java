@@ -1,30 +1,33 @@
-package Model;
+package Model.Clases;
 
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
 
-public abstract class Usuario {
+public class Usuario {
     private String nombre;
     private String apellido;
     private String dni;
     private String mail;
     private String contrasena;
+    private String nickName;
     private String paisOrigen;
     private static Integer cantUsuarios = 0;
     private Integer id;
     private boolean activo;
 
-    public Usuario(String nombre, String apellido, String dni, String mail, String paisOrigen) {
+    public Usuario(String nombre, String apellido, String dni, String mail, String contrasena, String nickName, String paisOrigen) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.mail = mail;
+        this.contrasena = contrasena;
+        this.nickName=nickName;
         this.paisOrigen = paisOrigen.toLowerCase(Locale.ROOT);
 
         cantUsuarios++;
         this.id = cantUsuarios;
-        activo = false;
+        activo = true;
     }
 
     @Override
@@ -35,13 +38,11 @@ public abstract class Usuario {
                 ", dni='" + dni + '\'' +
                 ", mail='" + mail + '\'' +
                 ", contrasena='" + contrasena + '\'' +
+                ", nickName='" + nickName + '\'' +
                 ", paisOrigen='" + paisOrigen + '\'' +
                 ", id=" + id +
+                ", activo=" + activo +
                 '}';
-    }
-
-    public void darseDeBaja(){
-        activo = false;
     }
 
     public String getNombre() {
@@ -92,6 +93,14 @@ public abstract class Usuario {
         this.paisOrigen = paisOrigen;
     }
 
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
     public boolean setPassword() {
         boolean comprobado = false;
         boolean comprobadoNum = false;
@@ -117,8 +126,6 @@ public abstract class Usuario {
 
             if (contra.length() >= 8) {
                 comprobadoCant = true;
-            } else {
-                comprobadoCant = false;
             }
             if (comprobadoCant && comprobadoMay && comprobadoNum) {
                 comprobado = true;
@@ -126,36 +133,30 @@ public abstract class Usuario {
             }
 
             if (!comprobadoCant) {
+                //Joption
                 System.out.println("La contraseña requiere al menos 8 caracteres");
             }
             if (!comprobadoMay) {
+                //Joption
                 System.out.print("La contraseña requiere al menos 1 letra mayuscula");
             }
             if (!comprobadoNum) {
+                //Joption
                 System.out.print("La contraseña requiere al menos 1 numero");
             }
+            comprobadoNum = false;
+            comprobadoMay = false;
+            comprobadoCant = false;
+
         }
 
-        return  comprobado;
+        return comprobado;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Usuario)) return false;
-        Usuario usuario = (Usuario) o;
-        return activo == usuario.activo && Objects.equals(nombre, usuario.nombre) && Objects.equals(apellido, usuario.apellido) && Objects.equals(dni, usuario.dni) && Objects.equals(mail, usuario.mail) && Objects.equals(contrasena, usuario.contrasena) && Objects.equals(paisOrigen, usuario.paisOrigen) && Objects.equals(id, usuario.id);
+    public void darseDeBaja() {
+        activo = false;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(nombre, apellido, dni, mail, contrasena, paisOrigen, id, activo);
-    }
-
-    /*
-    Metodos:
-
-    ModificarUser ----> en la clase contenedora
-
-     */
 }
+
+
