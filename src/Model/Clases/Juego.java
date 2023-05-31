@@ -1,14 +1,18 @@
 package Model.Clases;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Juego {
+public class Juego implements Comparable<Juego>, Serializable {
     private String nombre;
     private String categoria;
     private Double precio;
     private Integer valoracion;
     private Integer cantValoraciones;
     private Boolean activo;
+
+    private static Integer ID=0;
+    private Integer idJuego;
 
     public Juego() {
     }
@@ -20,6 +24,8 @@ public class Juego {
         this.valoracion = valoracion;
         this.cantValoraciones = cantValoraciones;
         this.activo = activo;
+        this.idJuego=ID;
+        ID++;
     }
 
     public String getNombre() {
@@ -70,6 +76,14 @@ public class Juego {
         this.activo = activo;
     }
 
+    public Integer getIdJuego() {
+        return idJuego;
+    }
+
+    public void setIdJuego(Integer idJuego) {
+        this.idJuego = idJuego;
+    }
+
     @Override
     public String toString() {
         return "Juego{" +
@@ -93,5 +107,16 @@ public class Juego {
     @Override
     public int hashCode() {
         return Objects.hash(nombre, categoria);
+    }
+
+    @Override
+    public int compareTo(Juego o) {
+        if (this.getValoracion()>o.valoracion){
+            return 1;
+        }else if(this.getValoracion()<o.valoracion){
+            return -1;
+        }else{
+            return 0;
+        }
     }
 }

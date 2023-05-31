@@ -1,13 +1,12 @@
 package Model.Interfaces;
 
 public interface ComportamientoUser {
-    public void comprar();
-    public void jugar();
-    public void cambiarcuenta();
-    public void listarComprados ();
-  /*  CargarSaldo
+     //void comprar();
+     void jugar();
+     void cambiarCuenta();
+     void listarComprados ();
+     void CargarSaldo();
+     void enviarMensaje();
 
-    Enviar mensaje
-    */
 
 }

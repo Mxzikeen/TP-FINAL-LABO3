@@ -1,10 +1,11 @@
 package Model.Clases;
 
+import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Usuario {
+public class Usuario implements Serializable {
     private String nombre;
     private String apellido;
     private String dni;

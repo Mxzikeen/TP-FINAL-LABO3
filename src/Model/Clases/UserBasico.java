@@ -2,9 +2,10 @@ package Model.Clases;
 
 import Model.Clases.Usuario;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserBasico extends Usuario /*implements ComportamientoUser*/{
+public class UserBasico extends Usuario implements Serializable /*,ComportamientoUser*/{
    private ArrayList<Juego> comprados;
 
     private Integer saldo;
@@ -52,6 +53,8 @@ public class UserBasico extends Usuario /*implements ComportamientoUser*/{
     public void setCantDePartidas(Integer cantDePartidas) {
         this.cantDePartidas = cantDePartidas;
     }
+
+
 /*
     sobreescribir modificarUser de usuario y metodos de la interfaz
 

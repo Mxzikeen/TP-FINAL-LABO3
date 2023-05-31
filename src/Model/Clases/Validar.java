@@ -1,5 +1,6 @@
 package Model.Clases;
 
+import java.io.Serializable;
 import java.util.Map;
 
 public abstract class Validar {
@@ -53,6 +54,6 @@ public abstract class Validar {
         }
         return aux;
     }
-    public static Boolean nombreDeJuego(String nombreJuego,)
+    //public static Boolean nombreDeJuego(String nombreJuego,)
 
 }

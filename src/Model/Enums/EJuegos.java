@@ -12,4 +12,8 @@ public enum EJuegos {
     private EJuegos( String nombreCategoria){
         this.nombreCategoria=nombreCategoria;
     }
+
+    public String getCategoria(){
+        return nombreCategoria;
+    }
 }
