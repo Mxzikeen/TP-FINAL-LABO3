@@ -1,9 +1,6 @@
 package Model.Clases;
 
 import java.io.Serializable;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Scanner;
 
 public class Usuario implements Serializable {
     private String nombre;
@@ -11,21 +8,16 @@ public class Usuario implements Serializable {
     private String dni;
     private String mail;
     private String contrasena;
-    private String nickName;
-    private String paisOrigen;
     private static Integer cantUsuarios = 0;
     private Integer id;
     private boolean activo;
 
-    public Usuario(String nombre, String apellido, String dni, String mail, String contrasena, String nickName, String paisOrigen) {
+    public Usuario(String nombre, String apellido, String dni, String mail, String contrasena) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.mail = mail;
         this.contrasena = contrasena;
-        this.nickName=nickName;
-        this.paisOrigen = paisOrigen.toLowerCase(Locale.ROOT);
-
         cantUsuarios++;
         this.id = cantUsuarios;
         activo = true;
@@ -39,8 +31,6 @@ public class Usuario implements Serializable {
                 ", dni='" + dni + '\'' +
                 ", mail='" + mail + '\'' +
                 ", contrasena='" + contrasena + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", paisOrigen='" + paisOrigen + '\'' +
                 ", id=" + id +
                 ", activo=" + activo +
                 '}';
@@ -86,22 +76,7 @@ public class Usuario implements Serializable {
         this.contrasena = contrasena;
     }
 
-    public String getPaisOrigen() {
-        return paisOrigen;
-    }
-
-    public void setPaisOrigen(String paisOrigen) {
-        this.paisOrigen = paisOrigen;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
+/*
     public boolean setPassword() {
         boolean comprobado = false;
         boolean comprobadoNum = false;
@@ -153,7 +128,7 @@ public class Usuario implements Serializable {
 
         return comprobado;
     }
-
+*/
     public void darseDeBaja() {
         activo = false;
     }

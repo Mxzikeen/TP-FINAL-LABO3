@@ -8,7 +8,7 @@ public class Admin extends Usuario implements Serializable {
     private Double sueldo;
 
     public Admin(String nombre, String apellido, String dni, String mail, String contrasena, String nickName, String paisOrigen, LocalDate fechaDeInicio, Double sueldo) {
-        super(nombre, apellido, dni, mail,contrasena, nickName,paisOrigen);
+        super(nombre, apellido, dni, mail,contrasena);
         this.fechaDeInicio = fechaDeInicio;
         this.sueldo = sueldo;
     }

@@ -9,19 +9,21 @@ public class Steam implements Serializable {
     ArrayList<Juego> juegos;
     HashMap<String,Usuario> usuariosCliente;
     LinkedList<Admin> usuariosAdmins;
-    //ArrayListDePedidos
+    ArrayList<Pedido> pedidos;
 
 
     public Steam(Steam steam) {
         this.juegos=steam.juegos;
         this.usuariosCliente=steam.usuariosCliente;
         this.usuariosAdmins=steam.usuariosAdmins;
+        this.pedidos=steam.pedidos;
     }
 
     public Steam() {
         juegos=new ArrayList<>();
         usuariosCliente=new HashMap<>();
         usuariosAdmins=new LinkedList<>();
+        pedidos=new ArrayList<>();
     }
 
     //region Manejo de Juegos
@@ -87,15 +89,62 @@ public class Steam implements Serializable {
         return listadoUsersBasicos;
     }
 
+
+    public ArrayList<UsuarioPremium> listarClientesPremium(){
+        ArrayList<UsuarioPremium> listadoUsuarioPremium=new ArrayList<>();
+        for (Map.Entry<String,Usuario> entry: usuariosCliente.entrySet()){
+            if(entry.getValue() instanceof UsuarioPremium){
+                listadoUsuarioPremium.add((UsuarioPremium) entry.getValue());
+            }
+        }
+        return listadoUsuarioPremium;
+    }
+
     public ArrayList<Usuario> listarClientes(){
         ArrayList<Usuario> listadoUsuarios=new ArrayList<>(usuariosCliente.values());
         return listadoUsuarios;
     }
+    public void modificarAPremium(UserBasico upGrade){
+        UsuarioPremium nuevoPremium=new UsuarioPremium(upGrade.getNombre(),
+                upGrade.getApellido(),
+                upGrade.getDni(),
+                upGrade.getMail(),
+                upGrade.getContrasena(),
+                upGrade.getNickName(),
+                upGrade.getSaldo(),
+                upGrade.getComprados(),
+                upGrade.getMensajes(),
+                upGrade.getExtractoDeCuenta());
+        this.usuariosCliente.put(upGrade.getDni(),upGrade);
+    }
+    public void modificarABasico(UsuarioPremium downGrade){
+        UserBasico nuevoBasico = new UserBasico(downGrade.getNombre(),
+                downGrade.getApellido(),
+                downGrade.getDni(),
+                downGrade.getMail(),
+                downGrade.getContrasena(),
+                downGrade.getSaldo(),
+                downGrade.getNickName(),
+                downGrade.getJuegosComprados(),
+                downGrade.getMensajes(),
+                downGrade.getMovimientosEnCuenta());
+        this.usuariosCliente.put(nuevoBasico.getDni(),nuevoBasico);
+    }
+
+    public void agregarAdmin(Admin nuevo){
+        this.usuariosAdmins.add(nuevo);
+    }
+    public void eliminarAdmin(Admin bajado){
+        this.usuariosAdmins.remove(bajado);
+    }
 
 
+    //endregion
 
-    //endRegion
-
+    //region Manejo de Pedidos
+    public void agregarPedido(Pedido nuevo){
+        this.pedidos.add(nuevo);
+    }
 
 
     //region Getters Y Setters Para Serializacion
@@ -124,7 +173,14 @@ public class Steam implements Serializable {
         this.usuariosAdmins = usuariosAdmins;
     }
 
-    //endRegion
+    public ArrayList<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(ArrayList<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+    //endregion
 
 
 }

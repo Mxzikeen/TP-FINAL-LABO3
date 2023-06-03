@@ -1,33 +1,39 @@
 package Model.Clases;
 
-import Model.Clases.Usuario;
+import Model.Interfaces.ComportamientoUser;
 
+import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Stack;
 
-public class UserBasico extends Usuario implements Serializable /*,ComportamientoUser*/{
-   private ArrayList<Juego> comprados;
+public class UserBasico extends Usuario implements Serializable , ComportamientoUser {
 
-    private Integer saldo;
-
-//    private ArrayList<Mensaje> mensajes;// de momento no lo hagamos ya que no sabemos si va
-                                        // hacer clase mensaje{Texto, Remitente, Destinatario, fecha}
+    private Double saldo;
+    private String nickName;
+    private ArrayList<Juego> comprados;
+    private ArrayList<Mensaje> mensajes;
+    private Stack<MovimientoEconomico> extractoDeCuenta;
     private Integer cantDePartidas = 0;
 
-    public UserBasico(String nombre, String apellido, String dni, String mail,String contrasena, String nickName, String paisOrigen) {
-        super(nombre, apellido, dni, mail, contrasena, nickName,paisOrigen);
-        comprados = new ArrayList<Juego>();
+    public UserBasico(String nombre, String apellido, String dni, String mail,String contrasena, String nickName) {
+        super(nombre, apellido, dni, mail, contrasena);
+        this.nickName=nickName;
+        this.comprados = new ArrayList<Juego>();
+        this.mensajes=new ArrayList<>();
+        this.extractoDeCuenta=new Stack<>();
+        this.saldo=0.0;
+        this.cantDePartidas=0;
     }
 
-    public void jugar(){
-        cantDePartidas++;
-    }
-
-
-
-    @Override
-    public void darseDeBaja() {
-        super.darseDeBaja();
+    public UserBasico(String nombre, String apellido, String dni, String mail, String contrasena, Double saldo, String nickName, ArrayList<Juego> comprados, ArrayList<Mensaje> mensajes, Stack<MovimientoEconomico> extractoDeCuenta) {
+        super(nombre, apellido, dni, mail, contrasena);
+        this.saldo = saldo;
+        this.nickName = nickName;
+        this.comprados = comprados;
+        this.mensajes = mensajes;
+        this.extractoDeCuenta = extractoDeCuenta;
+        this.cantDePartidas = 0;
     }
 
     public ArrayList<Juego> getComprados() {
@@ -38,11 +44,35 @@ public class UserBasico extends Usuario implements Serializable /*,Comportamient
         this.comprados = comprados;
     }
 
-    public Integer getSaldo() {
+    public Double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(Integer saldo) {
+    public ArrayList<Mensaje> getMensajes() {
+        return mensajes;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public void setMensajes(ArrayList<Mensaje> mensajes) {
+        this.mensajes = mensajes;
+    }
+
+    public Stack<MovimientoEconomico> getExtractoDeCuenta() {
+        return extractoDeCuenta;
+    }
+
+    public void setExtractoDeCuenta(Stack<MovimientoEconomico> extractoDeCuenta) {
+        this.extractoDeCuenta = extractoDeCuenta;
+    }
+
+    public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
 
@@ -54,13 +84,41 @@ public class UserBasico extends Usuario implements Serializable /*,Comportamient
         this.cantDePartidas = cantDePartidas;
     }
 
+    public void agregarMovimientoEconomico(MovimientoEconomico nuevo){
+        this.extractoDeCuenta.push(nuevo);
+    }
 
-/*
-    sobreescribir modificarUser de usuario y metodos de la interfaz
+    public void agregarMensaje(Mensaje nuevo){
+        this.mensajes.add(nuevo);
+    }
 
-    getters y setters
+    @Override
+    public void comprar(Pedido nuevo) {
+        for (Juego juego: nuevo.getJuegos()){
+            this.comprados.add(juego);
+        }
+    }
 
-            toString
+    public Boolean jugar(){
+        Boolean jugar=true;
+        if (cantDePartidas<5){
+            cantDePartidas++;
+        }else {
+            JOptionPane.showMessageDialog(null,"Limite de partidas diarias superado, regrese mañana o hagase premium");
+            jugar=false;
+        }
+        return jugar;
+    }
 
-     */
+    @Override
+    public ArrayList<Juego> listarComprados() {
+        return this.comprados;
+    }
+
+    @Override
+    public void CargarSaldo(Double aCargar) {
+        this.saldo+=aCargar;
+    }
+
+
 }
