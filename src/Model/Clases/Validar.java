@@ -4,6 +4,7 @@ import Model.Enums.EJuegos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Validar {
@@ -58,16 +59,25 @@ public abstract class Validar {
         return validado;
     }
 
-   /* public static Boolean nickname(String nickname, Map<String, Usuario> mapa) {
+   public static Boolean nickname(String nickname, HashMap<String,Cliente> mapa) {
         Boolean aux = true;
-        for (Map.Entry<String, Usuario> mapaAux : mapa.entrySet()) {
+        for (Map.Entry<String, Cliente> mapaAux : mapa.entrySet()) {
             if (mapaAux.getValue().getNickName().equals(nickname)) {
                 aux = false;
             }
         }
         return aux;
     }
-    */
+
+    public static Boolean dni(String DNI,HashMap<String,Cliente> map) {
+        Boolean aux = true;
+        if(map.containsKey(DNI)){
+            aux=false;
+        }
+
+        return aux;
+    }
+
 
    // public static Boolean nombreDeJuego(String nombreJuego, EJuegos categoria, ArrayList<Juego> juegos){
     //    Boolean existe=false;

@@ -14,20 +14,9 @@ public class UsuarioPremium  extends Usuario implements Serializable, Comportami
     private Double saldo;
     private ArrayList<Juego> juegosComprados;
     private ArrayList<Mensaje> mensajes;
-    private Stack<MovimientoEconomico> movimientosEnCuenta;
+    private ArrayList<MovimientoEconomico> movimientosEnCuenta;
 
-/*
-    public UsuarioPremium(String nombre, String apellido, String dni, String mail, String contrasena, String nickName, String paisOrigen) {
-        super(nombre, apellido, dni, mail, contrasena, nickName, paisOrigen);
-        this.vencimientoDeSuscripcion= LocalDate.now().plusDays(30).toString();
-        this.juegosComprados=new ArrayList<>();
-        this.mensajes=new ArrayList<>();
-        this.movimientosEnCuenta=new ArrayList<>();
-        this.saldo=0.0;
-    }
- */
-
-    public UsuarioPremium(String nombre, String apellido, String dni, String mail, String contrasena, String nickName, Double saldo, ArrayList<Juego> juegosComprados, ArrayList<Mensaje> mensajes, Stack<MovimientoEconomico> movimientosEnCuenta) {
+    public UsuarioPremium(String nombre, String apellido, String dni, String mail, String contrasena, String nickName, Double saldo, ArrayList<Juego> juegosComprados, ArrayList<Mensaje> mensajes, ArrayList<MovimientoEconomico> movimientosEnCuenta) {
         super(nombre, apellido, dni, mail, contrasena);
         this.vencimientoDeSuscripcion= LocalDate.now().plusDays(30).toString();
         this.nickName = nickName;
@@ -57,7 +46,7 @@ public class UsuarioPremium  extends Usuario implements Serializable, Comportami
         return mensajes;
     }
 
-    public Stack<MovimientoEconomico> getMovimientosEnCuenta() {
+    public ArrayList<MovimientoEconomico> getMovimientosEnCuenta() {
         return movimientosEnCuenta;
     }
 
@@ -80,8 +69,14 @@ public class UsuarioPremium  extends Usuario implements Serializable, Comportami
         this.mensajes = mensajes;
     }
 
-    public void setMovimientosEnCuenta(Stack<MovimientoEconomico> movimientosEnCuenta) {
+    public void setMovimientosEnCuenta(ArrayList<MovimientoEconomico> movimientosEnCuenta) {
         this.movimientosEnCuenta = movimientosEnCuenta;
+    }
+
+    public void pagarSuscripcion(){
+        LocalDate fecha=LocalDate.parse(this.vencimientoDeSuscripcion);
+        fecha.plusDays(30);
+        this.vencimientoDeSuscripcion=fecha.toString();
     }
 
     @Override
@@ -100,8 +95,4 @@ public class UsuarioPremium  extends Usuario implements Serializable, Comportami
         return juegosComprados;
     }
 
-    @Override
-    public void CargarSaldo(Double aCargar) {
-        this.saldo+=aCargar;
-    }
 }

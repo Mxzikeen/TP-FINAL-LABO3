@@ -12,6 +12,9 @@ public class Usuario implements Serializable {
     private Integer id;
     private boolean activo;
 
+    public Usuario() {
+    }
+
     public Usuario(String nombre, String apellido, String dni, String mail, String contrasena) {
         this.nombre = nombre;
         this.apellido = apellido;

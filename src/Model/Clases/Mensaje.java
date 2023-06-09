@@ -3,25 +3,25 @@ package Model.Clases;
 import java.time.LocalDate;
 
 public class Mensaje {
-    private Integer idEmisor;
-    private Integer idReceptor;
+    private String nicknameReceptor;
+    private String nicknameEmisor;
     private String mensaje;
     private String fecha;
 
-    public Mensaje(Integer idEmisor, Integer idReceptor, String mensaje) {
-        this.idEmisor = idEmisor;
-        this.idReceptor = idReceptor;
+    public Mensaje(String nicknameReceptor, String nicknameEmisor, String mensaje) {
+        this.nicknameReceptor = nicknameReceptor;
+        this.nicknameEmisor = nicknameEmisor;
         this.mensaje = mensaje;
         this.fecha = LocalDate.now().toString();
     }
 
     //region GETTERS
-    public Integer getIdEmisor() {
-        return idEmisor;
+    public String getNicknameReceptor() {
+        return nicknameReceptor;
     }
 
-    public Integer getIdReceptor() {
-        return idReceptor;
+    public String getNicknameEmisor() {
+        return nicknameEmisor;
     }
 
     public String getMensaje() {
@@ -34,12 +34,12 @@ public class Mensaje {
     //endregion
 
     //region SETTERS
-    public void setIdEmisor(Integer idEmisor) {
-        this.idEmisor = idEmisor;
+    public void setNicknameReceptor(String nicknameReceptor) {
+        this.nicknameReceptor = nicknameReceptor;
     }
 
-    public void setIdReceptor(Integer idReceptor) {
-        this.idReceptor = idReceptor;
+    public void setNicknameEmisor(String nicknameEmisor) {
+        this.nicknameEmisor = nicknameEmisor;
     }
 
     public void setMensaje(String mensaje) {

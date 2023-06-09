@@ -127,7 +127,7 @@ public class Steam implements Serializable {
                 downGrade.getNickName(),
                 downGrade.getJuegosComprados(),
                 downGrade.getMensajes(),
-                downGrade.getMovimientosEnCuenta());
+                downGrade.getMovimientosEnCuenta(),0);
         this.usuariosCliente.put(nuevoBasico.getDni(),nuevoBasico);
     }
 
@@ -145,6 +145,8 @@ public class Steam implements Serializable {
     public void agregarPedido(Pedido nuevo){
         this.pedidos.add(nuevo);
     }
+
+    //endregion
 
 
     //region Getters Y Setters Para Serializacion
@@ -182,5 +184,24 @@ public class Steam implements Serializable {
     }
     //endregion
 
+    //region Gestion de Mensajes
+    public void logisticaDeMensajes(Mensaje nuevo){
+        Cliente destino=buscarClientePorNickName(nuevo.getNicknameReceptor());
+        destino.getMensajes().add(nuevo);
+    }
+
+    public Cliente buscarClientePorNickName(String nickName){
+        Cliente buscado=null;
+        Cliente aux=null;
+        for(Map.Entry entry: usuariosCliente.entrySet()){
+            aux= (Cliente)entry.getValue();
+            if(aux.getNickName().equals(nickName)){
+                buscado = aux;
+            }
+        }
+        return buscado;
+    }
+
+    //endregion
 
 }
