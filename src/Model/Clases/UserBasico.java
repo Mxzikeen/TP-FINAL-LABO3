@@ -13,27 +13,20 @@ public class UserBasico extends Usuario implements Serializable , Comportamiento
     private String nickName;
     private ArrayList<Juego> comprados;
     private ArrayList<Mensaje> mensajes;
-    private Stack<MovimientoEconomico> extractoDeCuenta;
+    private ArrayList<MovimientoEconomico> extractoDeCuenta;
     private Integer cantDePartidas = 0;
 
-    public UserBasico(String nombre, String apellido, String dni, String mail,String contrasena, String nickName) {
-        super(nombre, apellido, dni, mail, contrasena);
-        this.nickName=nickName;
-        this.comprados = new ArrayList<Juego>();
-        this.mensajes=new ArrayList<>();
-        this.extractoDeCuenta=new Stack<>();
-        this.saldo=0.0;
-        this.cantDePartidas=0;
+    public UserBasico() {
     }
 
-    public UserBasico(String nombre, String apellido, String dni, String mail, String contrasena, Double saldo, String nickName, ArrayList<Juego> comprados, ArrayList<Mensaje> mensajes, Stack<MovimientoEconomico> extractoDeCuenta) {
+    public UserBasico(String nombre, String apellido, String dni, String mail, String contrasena, Double saldo, String nickName, ArrayList<Juego> comprados, ArrayList<Mensaje> mensajes, ArrayList<MovimientoEconomico> extractoDeCuenta, Integer cantDePartidas) {
         super(nombre, apellido, dni, mail, contrasena);
         this.saldo = saldo;
         this.nickName = nickName;
         this.comprados = comprados;
         this.mensajes = mensajes;
         this.extractoDeCuenta = extractoDeCuenta;
-        this.cantDePartidas = 0;
+        this.cantDePartidas = cantDePartidas;
     }
 
     public ArrayList<Juego> getComprados() {
@@ -64,11 +57,11 @@ public class UserBasico extends Usuario implements Serializable , Comportamiento
         this.mensajes = mensajes;
     }
 
-    public Stack<MovimientoEconomico> getExtractoDeCuenta() {
+    public ArrayList<MovimientoEconomico> getExtractoDeCuenta() {
         return extractoDeCuenta;
     }
 
-    public void setExtractoDeCuenta(Stack<MovimientoEconomico> extractoDeCuenta) {
+    public void setExtractoDeCuenta(ArrayList<MovimientoEconomico> extractoDeCuenta) {
         this.extractoDeCuenta = extractoDeCuenta;
     }
 
@@ -85,7 +78,7 @@ public class UserBasico extends Usuario implements Serializable , Comportamiento
     }
 
     public void agregarMovimientoEconomico(MovimientoEconomico nuevo){
-        this.extractoDeCuenta.push(nuevo);
+        this.extractoDeCuenta.add(nuevo);
     }
 
     public void agregarMensaje(Mensaje nuevo){

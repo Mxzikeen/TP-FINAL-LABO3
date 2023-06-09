@@ -127,7 +127,7 @@ public class Steam implements Serializable {
                 downGrade.getNickName(),
                 downGrade.getJuegosComprados(),
                 downGrade.getMensajes(),
-                downGrade.getMovimientosEnCuenta());
+                downGrade.getMovimientosEnCuenta(),0);
         this.usuariosCliente.put(nuevoBasico.getDni(),nuevoBasico);
     }
 
@@ -145,6 +145,8 @@ public class Steam implements Serializable {
     public void agregarPedido(Pedido nuevo){
         this.pedidos.add(nuevo);
     }
+
+    //endregion
 
 
     //region Getters Y Setters Para Serializacion
