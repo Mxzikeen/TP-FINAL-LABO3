@@ -16,7 +16,7 @@ public class UserBasico extends Usuario implements Serializable , Comportamiento
     private Stack<MovimientoEconomico> extractoDeCuenta;
     private Integer cantDePartidas = 0;
 
-    public UserBasico(String nombre, String apellido, String dni, String mail,String contrasena, String nickName) {
+    public UserBasico(String nombre, String apellido, String dni, String mail, String contrasena, Double saldo, String nickName, ArrayList<Juego> juegosComprados, ArrayList<Mensaje> mensajes, ArrayList<MovimientoEconomico> movimientosEnCuenta, int i) {
         super(nombre, apellido, dni, mail, contrasena);
         this.nickName=nickName;
         this.comprados = new ArrayList<Juego>();
@@ -113,11 +113,6 @@ public class UserBasico extends Usuario implements Serializable , Comportamiento
     @Override
     public ArrayList<Juego> listarComprados() {
         return this.comprados;
-    }
-
-    @Override
-    public void CargarSaldo(Double aCargar) {
-        this.saldo+=aCargar;
     }
 
 
