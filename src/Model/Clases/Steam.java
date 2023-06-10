@@ -125,9 +125,9 @@ public class Steam implements Serializable {
                 downGrade.getContrasena(),
                 downGrade.getSaldo(),
                 downGrade.getNickName(),
-                downGrade.getJuegosComprados(),
+                downGrade.getComprados(),
                 downGrade.getMensajes(),
-                downGrade.getMovimientosEnCuenta(),0);
+                downGrade.getExtractoDeCuenta(),0);
         this.usuariosCliente.put(nuevoBasico.getDni(),nuevoBasico);
     }
 
