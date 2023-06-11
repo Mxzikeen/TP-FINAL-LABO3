@@ -25,6 +25,15 @@ public class Cliente extends Usuario{
         this.extractoDeCuenta = new ArrayList<>();
     }
 
+    public Cliente(String nombre, String apellido, String dni, String mail, String contrasena, Double saldo, String nickName, ArrayList<Juego> comprados, ArrayList<Mensaje> mensajes, ArrayList<MovimientoEconomico> extractoDeCuenta) {
+        super(nombre, apellido, dni, mail, contrasena);
+        this.saldo = saldo;
+        this.nickName = nickName;
+        this.comprados = comprados;
+        this.mensajes = mensajes;
+        this.extractoDeCuenta = extractoDeCuenta;
+    }
+
     public Double getSaldo() {
         return saldo;
     }
