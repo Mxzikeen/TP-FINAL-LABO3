@@ -105,7 +105,7 @@ public class Steam implements Serializable {
         return listadoUsuarios;
     }
     public void modificarAPremium(UserBasico upGrade){
-        UsuarioPremium nuevoPremium=new UsuarioPremium(upGrade.getNombre(),upGrade.getApellido(),upGrade.getDni(),upGrade.getMail(),upGrade.getContrasena(),upGrade.getSaldo(),upGrade.getNickName());
+        UsuarioPremium nuevoPremium=new UsuarioPremium(upGrade.getNombre(),upGrade.getApellido(),upGrade.getDni(), upGrade.getMail(), upGrade.getContrasena(), upGrade.getSaldo(),upGrade.getNickName());
         this.usuariosCliente.put(upGrade.getDni(),upGrade);
     }
     public void modificarABasico(UsuarioPremium downGrade){
