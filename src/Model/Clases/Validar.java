@@ -8,11 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Validar {
-    public static Boolean contrasena(String contra) {
-        Boolean mayus = false;
-        Boolean num = false;
-        Boolean cant = false;
-        Boolean validado = false;
+    public static ArrayList<Boolean> contrasena(String contra) {
+
+        Boolean validado = false;//es el 0
+        Boolean mayus = false;//es el 1
+        Boolean num = false;//es el 2
+        Boolean cant = false;//es el 3
+
+        ArrayList<Boolean> validacionesContra=new ArrayList<>();
 
         for (int i = 0; i < contra.length(); i++) {
             if (Character.isUpperCase(contra.charAt(i))) {
@@ -30,6 +33,11 @@ public abstract class Validar {
             validado = true;
         }
 
+        validacionesContra.add(validado);
+        validacionesContra.add(mayus);
+        validacionesContra.add(num);
+        validacionesContra.add(cant);
+
         //soy mateo, me parecio estas dos sacarlas del for ya que son validaciones que se hacen
         //una sola vez, no me parece eficiente que cada vez que itere el bucle for consulte el respectivo if
         //ya que son validaciones  a hacer una sola vez
@@ -37,13 +45,16 @@ public abstract class Validar {
         //la da como valida, en caso de que la primera sea mayus y la segunda minus, me parece innecesario seguir
         //recorreindo el string
 
-        return validado;
+        return validacionesContra;
     }
 
-    public static Boolean mail(String mail, Map<String, Usuario> mapa) {
-        Boolean aux = false;
-        Boolean auxmail = false;
-        Boolean validado = false;
+    public static ArrayList<Boolean> mail(String mail, Map<String, Usuario> mapa) {
+
+        Boolean validado = false;//es la 0
+        Boolean aux = false;//es la 1
+        Boolean auxmail = false;//es la 2
+        ArrayList<Boolean> verificacionesMail=new ArrayList<>();
+
         if (mail.contains("@") && mail.contains(".")) {
             aux = true;
         }
@@ -56,7 +67,12 @@ public abstract class Validar {
         if (aux && !auxmail) {
             validado = true;
         }
-        return validado;
+
+        verificacionesMail.add(validado);
+        verificacionesMail.add(aux);
+        verificacionesMail.add(auxmail);
+
+        return verificacionesMail;
     }
 
    public static Boolean nickname(String nickname, HashMap<String,Cliente> mapa) {
