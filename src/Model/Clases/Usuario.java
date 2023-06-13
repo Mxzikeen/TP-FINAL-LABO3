@@ -79,59 +79,65 @@ public class Usuario implements Serializable {
         this.contrasena = contrasena;
     }
 
-/*
-    public boolean setPassword() {
-        boolean comprobado = false;
-        boolean comprobadoNum = false;
-        boolean comprobadoCant = false;
-        boolean comprobadoMay = false;
-
-        Scanner in = new Scanner(System.in);
-        String contra = "";
-
-        System.out.println("Introducir una contraseña con almenos 8 caracteres \nAl menos uno debe ser un numero y una letra mayuscula");
-
-        while (!comprobado) {
-            contra = in.nextLine();
-            for (int i = 0; i < contra.length(); i++) {
-                if (contra.charAt(i) >= 48 && contra.charAt(i) <= 57) {
-                    comprobadoNum = true;
-                }
-
-                if (contra.charAt(i) >= 65 && contra.charAt(i) <= 90) {
-                    comprobadoMay = true;
-                }
-            }
-
-            if (contra.length() >= 8) {
-                comprobadoCant = true;
-            }
-            if (comprobadoCant && comprobadoMay && comprobadoNum) {
-                comprobado = true;
-                contrasena = contra;
-            }
-
-            if (!comprobadoCant) {
-                //Joption
-                System.out.println("La contraseña requiere al menos 8 caracteres");
-            }
-            if (!comprobadoMay) {
-                //Joption
-                System.out.print("La contraseña requiere al menos 1 letra mayuscula");
-            }
-            if (!comprobadoNum) {
-                //Joption
-                System.out.print("La contraseña requiere al menos 1 numero");
-            }
-            comprobadoNum = false;
-            comprobadoMay = false;
-            comprobadoCant = false;
-
-        }
-
-        return comprobado;
+    public boolean isActivo() {
+        return activo;
     }
-*/
+
+
+
+    /*
+        public boolean setPassword() {
+            boolean comprobado = false;
+            boolean comprobadoNum = false;
+            boolean comprobadoCant = false;
+            boolean comprobadoMay = false;
+
+            Scanner in = new Scanner(System.in);
+            String contra = "";
+
+            System.out.println("Introducir una contraseña con almenos 8 caracteres \nAl menos uno debe ser un numero y una letra mayuscula");
+
+            while (!comprobado) {
+                contra = in.nextLine();
+                for (int i = 0; i < contra.length(); i++) {
+                    if (contra.charAt(i) >= 48 && contra.charAt(i) <= 57) {
+                        comprobadoNum = true;
+                    }
+
+                    if (contra.charAt(i) >= 65 && contra.charAt(i) <= 90) {
+                        comprobadoMay = true;
+                    }
+                }
+
+                if (contra.length() >= 8) {
+                    comprobadoCant = true;
+                }
+                if (comprobadoCant && comprobadoMay && comprobadoNum) {
+                    comprobado = true;
+                    contrasena = contra;
+                }
+
+                if (!comprobadoCant) {
+                    //Joption
+                    System.out.println("La contraseña requiere al menos 8 caracteres");
+                }
+                if (!comprobadoMay) {
+                    //Joption
+                    System.out.print("La contraseña requiere al menos 1 letra mayuscula");
+                }
+                if (!comprobadoNum) {
+                    //Joption
+                    System.out.print("La contraseña requiere al menos 1 numero");
+                }
+                comprobadoNum = false;
+                comprobadoMay = false;
+                comprobadoCant = false;
+
+            }
+
+            return comprobado;
+        }
+    */
     public void darseDeBaja() {
         activo = false;
     }
