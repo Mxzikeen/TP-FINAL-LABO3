@@ -10,6 +10,7 @@ public class Juego implements Comparable<Juego>, Serializable {
     private Integer valoracion;
     private Integer cantValoraciones;
     private Boolean activo;
+    private String rutaVideo;
 
     private static Integer ID=0;
     private Integer idJuego;
@@ -17,13 +18,14 @@ public class Juego implements Comparable<Juego>, Serializable {
     public Juego() {
     }
 
-    public Juego(String nombre, String categoria, Double precio, Integer valoracion, Integer cantValoraciones, Boolean activo) {
+    public Juego(String nombre, String categoria, Double precio, Integer valoracion, Integer cantValoraciones, Boolean activo,String rutaVideo) {
         this.nombre = nombre;
         this.categoria = categoria;
         this.precio = precio;
         this.valoracion = valoracion;
         this.cantValoraciones = cantValoraciones;
         this.activo = activo;
+        this.rutaVideo=rutaVideo;
         this.idJuego=ID;
         ID++;
     }
@@ -82,6 +84,14 @@ public class Juego implements Comparable<Juego>, Serializable {
 
     public void setIdJuego(Integer idJuego) {
         this.idJuego = idJuego;
+    }
+
+    public String getRutaVideo() {
+        return rutaVideo;
+    }
+
+    public void setRutaVideo(String rutaVideo) {
+        this.rutaVideo = rutaVideo;
     }
 
     @Override

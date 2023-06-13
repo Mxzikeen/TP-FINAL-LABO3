@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Steam implements Serializable {
     ArrayList<Juego> juegos;
-    HashMap<String,Usuario> usuariosCliente;
+    HashMap<String,Cliente> usuariosCliente;
     LinkedList<Admin> usuariosAdmins;
     ArrayList<Pedido> pedidos;
 
@@ -67,7 +67,7 @@ public class Steam implements Serializable {
     //endregion
 
     //region Manejo de User
-    public void agregarUsuario(Usuario nuevo){
+    public void agregarUsuario(Cliente nuevo){
         this.usuariosCliente.put(nuevo.getDni(),nuevo);
     }
 
@@ -81,7 +81,7 @@ public class Steam implements Serializable {
 
     public ArrayList<UserBasico> listarClientesBasicos(){
         ArrayList<UserBasico> listadoUsersBasicos=new ArrayList<>();
-        for (Map.Entry<String,Usuario> entry: usuariosCliente.entrySet()){
+        for (Map.Entry<String,Cliente> entry: usuariosCliente.entrySet()){
             if(entry.getValue() instanceof UserBasico){
                 listadoUsersBasicos.add((UserBasico) entry.getValue());
             }
@@ -92,7 +92,7 @@ public class Steam implements Serializable {
 
     public ArrayList<UsuarioPremium> listarClientesPremium(){
         ArrayList<UsuarioPremium> listadoUsuarioPremium=new ArrayList<>();
-        for (Map.Entry<String,Usuario> entry: usuariosCliente.entrySet()){
+        for (Map.Entry<String,Cliente> entry: usuariosCliente.entrySet()){
             if(entry.getValue() instanceof UsuarioPremium){
                 listadoUsuarioPremium.add((UsuarioPremium) entry.getValue());
             }
@@ -141,11 +141,11 @@ public class Steam implements Serializable {
         this.juegos = juegos;
     }
 
-    public HashMap<String, Usuario> getUsuariosCliente() {
+    public HashMap<String, Cliente> getUsuariosCliente() {
         return usuariosCliente;
     }
 
-    public void setUsuariosCliente(HashMap<String, Usuario> usuariosCliente) {
+    public void setUsuariosCliente(HashMap<String, Cliente> usuariosCliente) {
         this.usuariosCliente = usuariosCliente;
     }
 
