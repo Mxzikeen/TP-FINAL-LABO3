@@ -137,7 +137,7 @@ public class Steam implements Serializable {
     public ArrayList<Cliente> listarClientesDadosDeBaja() {
         ArrayList<Cliente> arrayList = new ArrayList<>();
         for (Cliente cliente : usuariosCliente.values()) {
-            if (!cliente.isActivo()) {
+            if (!cliente.getActivo()) {
                 arrayList.add(cliente);
             }
         }
