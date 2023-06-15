@@ -2,7 +2,8 @@ package Model.Clases;
 
 import java.time.LocalDate;
 
-public class Mensaje {
+public class
+Mensaje {
     private String nicknameReceptor;
     private String nicknameEmisor;
     private String mensaje;
