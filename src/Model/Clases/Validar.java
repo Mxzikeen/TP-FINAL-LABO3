@@ -48,6 +48,8 @@ public abstract class Validar {
         return validacionesContra;
     }
 
+    //hacer la del mail pero en admin q es linkedlist
+    //hacer la que busca si el nombre de juego esta ya guardado
     public static ArrayList<Boolean> mail(String mail, Map<String, Usuario> mapa) {
 
         Boolean validado = false;//es la 0
@@ -93,11 +95,5 @@ public abstract class Validar {
 
         return aux;
     }
-
-
-   // public static Boolean nombreDeJuego(String nombreJuego, EJuegos categoria, ArrayList<Juego> juegos){
-    //    Boolean existe=false;
-    //    return existe;
-    //}
 
 }
