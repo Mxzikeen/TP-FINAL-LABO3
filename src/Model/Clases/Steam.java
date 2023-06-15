@@ -190,20 +190,8 @@ public class Steam implements Serializable {
 
     //region Gestion de Mensajes
     public void logisticaDeMensajes(Mensaje nuevo) {
-        Cliente destino = buscarClientePorNickName(nuevo.getNicknameReceptor());
+        Cliente destino = buscarClientePorNickname(nuevo.getNicknameReceptor());
         destino.getMensajes().add(nuevo);
-    }
-
-    public Cliente buscarClientePorNickName(String nickName) {
-        Cliente buscado = null;
-        Cliente aux = null;
-        for (Map.Entry entry : usuariosCliente.entrySet()) {
-            aux = (Cliente) entry.getValue();
-            if (aux.getNickName().equals(nickName)) {
-                buscado = aux;
-            }
-        }
-        return buscado;
     }
 
     //endregion
