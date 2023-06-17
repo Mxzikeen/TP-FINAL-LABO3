@@ -1,8 +1,12 @@
 package Model.Clases;
 
-import java.util.ArrayList;
+import Model.Enums.EJuegos;
 
-public class Cliente extends Usuario{
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Cliente extends Usuario {
 
     private Double saldo;
     private String nickName;
@@ -75,13 +79,38 @@ public class Cliente extends Usuario{
     }
 
     public void CargarSaldo(Double aCargar) {
-        this.saldo+=aCargar;
+        this.saldo += aCargar;
     }
 
-    public void agregarMovimientoEconomico(MovimientoEconomico nuevo){
+    public void agregarMovimientoEconomico(MovimientoEconomico nuevo) {
         this.extractoDeCuenta.add(nuevo);
     }
 
+    public String getCategoriaFavorita() {
+        HashMap<String, Integer> map = new HashMap<>();
+        ArrayList<String> categoria = new ArrayList<>();
+        ArrayList<Integer> cantidad = new ArrayList<>();
+
+        for (Juego j : comprados) {
+            if (map.containsKey(j.getCategoria())) {
+                map.put(j.getCategoria(), map.get(j.getCategoria()) + 1);
+            } else {
+                map.put(j.getCategoria(), 1);
+            }
+        }
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            categoria.add(entry.getKey());
+            cantidad.add(entry.getValue());
+        }
+        Integer posMayor = 0;
+
+        for (Integer i = 1; i < cantidad.size(); i++) {
+            if (cantidad.get(i) > cantidad.get(posMayor)) {
+                posMayor = i;
+            }
+        }
+        return categoria.get(posMayor);
+    }
 
     @Override
     public String toString() {

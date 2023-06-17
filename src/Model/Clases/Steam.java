@@ -143,6 +143,20 @@ public class Steam implements Serializable {
         }
         return arrayList;
     }
+
+    public ArrayList<Juego> recomendacionJuego(Cliente cliente) {
+        String catFav = cliente.getCategoriaFavorita();
+        ArrayList<Juego> aRecomendar = new ArrayList<>();
+        Integer i = 0, j = 0;
+        while (i < 5 && j < juegos.size()) {
+            if (!cliente.getComprados().contains(juegos.get(j)) && juegos.get(j).getCategoria().equals(catFav)) {
+                aRecomendar.add(juegos.get(j));
+                i++;
+            }
+            j++;
+        }
+        return aRecomendar;
+    }
     //endregion
 
     //region Manejo de Pedidos
