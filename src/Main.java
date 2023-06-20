@@ -1,6 +1,7 @@
 import Model.Clases.Admin;
 import Model.Clases.Usuario;
 import Model.Clases.Validar;
+import Model.Enums.EJuegos;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -33,5 +34,6 @@ public class Main {
         list.add(admin);
         System.out.println("validando admin" + Validar.mailAdmin(admin.getMail(), list));
         System.out.println("validando admin" + Validar.mailAdmin("panalindo2@gmail.com", list));*/
+
     }
 }

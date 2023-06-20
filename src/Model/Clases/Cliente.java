@@ -87,29 +87,35 @@ public class Cliente extends Usuario {
     }
 
     public String getCategoriaFavorita() {
-        HashMap<String, Integer> map = new HashMap<>();
-        ArrayList<String> categoria = new ArrayList<>();
-        ArrayList<Integer> cantidad = new ArrayList<>();
 
-        for (Juego j : comprados) {
-            if (map.containsKey(j.getCategoria())) {
-                map.put(j.getCategoria(), map.get(j.getCategoria()) + 1);
-            } else {
-                map.put(j.getCategoria(), 1);
+        String catfav = "";
+        if (comprados.size() == 0) {
+            catfav = EJuegos.ACCION.toString();
+        } else {
+            HashMap<String, Integer> map = new HashMap<>();
+            ArrayList<String> categoria = new ArrayList<>();
+            ArrayList<Integer> cantidad = new ArrayList<>();
+            for (Juego j : comprados) {
+                if (map.containsKey(j.getCategoria())) {
+                    map.put(j.getCategoria(), map.get(j.getCategoria()) + 1);
+                } else {
+                    map.put(j.getCategoria(), 1);
+                }
+            }
+            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                categoria.add(entry.getKey());
+                cantidad.add(entry.getValue());
+            }
+            Integer posMayor = 0;
+
+            for (Integer i = 1; i < cantidad.size(); i++) {
+                if (cantidad.get(i) > cantidad.get(posMayor)) {
+                    posMayor = i;
+                    catfav = categoria.get(posMayor);
+                }
             }
         }
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            categoria.add(entry.getKey());
-            cantidad.add(entry.getValue());
-        }
-        Integer posMayor = 0;
-
-        for (Integer i = 1; i < cantidad.size(); i++) {
-            if (cantidad.get(i) > cantidad.get(posMayor)) {
-                posMayor = i;
-            }
-        }
-        return categoria.get(posMayor);
+        return catfav;
     }
 
     @Override
